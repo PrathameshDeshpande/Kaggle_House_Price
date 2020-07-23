@@ -24,7 +24,7 @@ corr_matrix["SalePrice"].sort_values(ascending=False)
 Housing_Y = housing.iloc[:,-1]
 Housing_X = housing.drop("SalePrice",axis = 1)
 
-Housing_X.drop(['BsmtFullBath','BsmtUnfSF','BedroomAbvGr','ScreenPorch','PoolArea','MoSold','3SsnPorch','BsmtFinSF2','BsmtHalfBath','MiscVal','Id','LowQualFinSF','YrSold','OverallCond','MSSubClass','EnclosedPorch','KitchenAbvGr'],axis =1,inplace=True)
+Housing_X.drop(['PoolArea','MoSold','3SsnPorch','BsmtFinSF2','BsmtHalfBath','MiscVal','Id','LowQualFinSF','YrSold','OverallCond','MSSubClass','EnclosedPorch','KitchenAbvGr'],axis =1,inplace=True)
 Housing_X.drop(['Alley','PoolQC','Fence','MiscFeature','SaleType','GarageCond','GarageFinish','Functional','Electrical'],axis = 1,inplace =True)
 Housing_X.drop(['GarageQual','HeatingQC','Heating','BsmtFinType2','BsmtFinType2','BsmtFinType1','BsmtExposure','BsmtCond','Foundation','ExterCond','MasVnrType','Exterior2nd','Exterior1st','RoofMatl','RoofStyle','HouseStyle','Condition2','Condition1','LotConfig','Utilities','LandContour'],axis=1,inplace=True)
 Housing_X.drop(['FireplaceQu','Street'],axis=1,inplace=True)            
@@ -145,10 +145,8 @@ Housing_Y = Y_S.fit_transform(Housing_Y)
 N,D = X_Train.shape
 model = tf.keras.models.Sequential([
   tf.keras.layers.Input(shape=(D,)),
-  tf.keras.layers.Dense(4000,activation ='relu',kernel_regularizer=tf.keras.regularizers.l1(0.01),
-    activity_regularizer=tf.keras.regularizers.l2(0.01)),
-  tf.keras.layers.Dense(4000,activation ='relu',kernel_regularizer=tf.keras.regularizers.l1(0.01),
-    activity_regularizer=tf.keras.regularizers.l2(0.01)),
+  tf.keras.layers.Dense(4000,activation ='relu'),
+  tf.keras.layers.Dense(4000,activation ='relu'),
   tf.keras.layers.Dense(3000,activation ='relu'),
   tf.keras.layers.Dense(3000,activation ='relu'),
   tf.keras.layers.Dense(2000,activation ='relu'),
@@ -167,7 +165,7 @@ model.compile(optimizer='sgd',
 
 
 
-r = model.fit(X_Train,Housing_Y,epochs=200,verbose=1)
+r = model.fit(X_Train,Housing_Y,epochs=1000,verbose=1)
 
 Housing_test.drop(['BsmtFullBath','BsmtUnfSF','BedroomAbvGr','ScreenPorch','PoolArea','MoSold','3SsnPorch','BsmtFinSF2','BsmtHalfBath','MiscVal','Id','LowQualFinSF','YrSold','OverallCond','MSSubClass','EnclosedPorch','KitchenAbvGr'],axis =1,inplace=True)
 Housing_test.drop(['Alley','PoolQC','Fence','MiscFeature','SaleType','GarageCond','GarageFinish','Functional','Electrical'],axis = 1,inplace =True)

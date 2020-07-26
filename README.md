@@ -8,4 +8,3 @@ Accuracy Achived of 87% or 0.13 mse loss on my model
 Rank Achived = 1600/5200
 I will try different ml techniques to improve the score
 
-![alt text](https://github.com/[PrathameshDeshpande]/[Kaggle_House_Price]/blob/[master]/Ranking.png?raw=true)

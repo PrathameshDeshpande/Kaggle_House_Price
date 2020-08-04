@@ -7,4 +7,4 @@ UPDATE - 23/07/2020
 Accuracy Achived of 87% or 0.13 mse loss on my model
 Rank Achived = 1600/5200
 I will try different ml techniques to improve the score
-
+Improvements made
